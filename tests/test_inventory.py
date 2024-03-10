@@ -5,6 +5,7 @@ from syntheseus_retro_star_benchmark import RetroStarInventory
 
 def test_retro_star_inventory():
     """Test that the retro-star inventory is correct."""
+
     test_tuples = [
         # First some molecules near the start of the inventory
         (Molecule("Br"), True),
@@ -36,3 +37,6 @@ def test_retro_star_inventory():
     inventory = RetroStarInventory()
     for mol, expected_purchasable in test_tuples:
         assert inventory.is_purchasable(mol) == expected_purchasable
+
+    # Next, test overall length of inventory
+    assert len(inventory._smiles_set) == 23081629
