@@ -5,9 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "syntheseus-retro-star-benchmark"
 version = "0.1.0"
-authors = [  # Note: PyPI does not support multiple authors with email addresses included.
+authors = [
     {name = "Austin Tripp"},
-    {name = "Krzysztof Maziarz"},
 ]
 description = "Syntheseus wrapper for retro* benchmark. "
 readme = "README.md"
@@ -18,6 +17,9 @@ dependencies = [
     "syntheseus",
     "rdkit",
 ]
+
+[project.urls]
+Repository = "https://github.com/AustinT/syntheseus-retro-star-benchmark"
 
 [tool.black]
 line-length = 120
