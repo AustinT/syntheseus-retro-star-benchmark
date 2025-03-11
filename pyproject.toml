@@ -13,9 +13,11 @@ readme = "README.md"
 requires-python = ">=3.7"
 license = {file = "LICENSE"}
 dependencies = [
-    "pytorch",
+    "torch",
     "syntheseus",
     "rdkit",
+    "pandas",
+    "rdchiral",
 ]
 
 [project.urls]
