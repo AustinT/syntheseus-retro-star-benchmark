@@ -39,4 +39,6 @@ def test_retro_star_inventory():
         assert inventory.is_purchasable(mol) == expected_purchasable
 
     # Next, test overall length of inventory
-    assert len(inventory._smiles_set) == 23081629
+    # Ideally it should be exactly 23081629, but depending on the version of RDKit
+    # some SMILES strings may be rejected, so we allow for a small range of possible values
+    assert 23081580 <= len(inventory._smiles_set) <= 23081629
