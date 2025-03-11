@@ -16,6 +16,8 @@ dependencies = [
     "torch",
     "syntheseus",
     "rdkit",
+    "pandas",
+    "rdchiral",
 ]
 
 [project.urls]
