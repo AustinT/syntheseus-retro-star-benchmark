@@ -1,10 +1,9 @@
 [build-system]
-requires = ["setuptools>=45"]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "syntheseus-retro-star-benchmark"
-version = "0.1.0"
 authors = [
     {name = "Austin Tripp"},
 ]
@@ -12,6 +11,8 @@ description = "Syntheseus wrapper for retro* benchmark. "
 readme = "README.md"
 requires-python = ">=3.7"
 license = {file = "LICENSE"}
+dynamic = ["version"]
+
 dependencies = [
     "torch",
     "syntheseus",
@@ -22,6 +23,13 @@ dependencies = [
 
 [project.urls]
 Repository = "https://github.com/AustinT/syntheseus-retro-star-benchmark"
+
+[tool.setuptools]
+# Specifies location of package to install
+# Guidance from: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
+packages = ["syntheseus_retro_star_benchmark"]
+
+[tool.setuptools_scm]
 
 [tool.black]
 line-length = 120
