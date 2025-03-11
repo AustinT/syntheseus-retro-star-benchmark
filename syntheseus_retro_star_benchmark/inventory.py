@@ -20,7 +20,12 @@ def get_canonical_inventory_csv() -> Path:
     output_path = get_original_inventory_csv().with_stem(f"rdkit-v{rdkit_version}-canonical-inventory")
     if not output_path.exists():
         print(f"Canonical inventory does not exist for rdkit version {rdkit_version}. Will now make it.", flush=True)
-        from tqdm.auto import tqdm
+        
+        try:
+            from tqdm.auto import tqdm
+            reader_iter_cls = tqdm
+        except ImportError:
+            reader_iter_cls = iter
 
         # Read in entire inventory
         with gzip.open(original_csv_path, "rt") as f_in:
@@ -29,9 +34,13 @@ def get_canonical_inventory_csv() -> Path:
                 writer = csv.writer(f)
 
                 writer.writerow(next(reader))  # write header
-                for row in tqdm(reader):
-                    row[1] = Chem.CanonSmiles(row[1])
-                    writer.writerow(row)
+                for row in reader_iter_cls(reader):
+                    mol = Chem.MolFromSmiles(row[1])
+                    if mol is None:
+                        pass  # skip this row
+                    else:
+                        row[1] = Chem.MolToSmiles(mol)
+                        writer.writerow(row)
 
     return output_path
 
